@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Driver Route Tracker</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom, #e3f2fd, #bbdefb);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: "Poppins", sans-serif;
+    }
+
+    .route-container {
+      position: relative;
+      width: 380px;
+      height: 95vh;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      padding-top: 40px;
+      padding-bottom: 80px; /* 🧱 Added spacing at bottom */
+    }
+
+    .route-line {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 10px;
+      height: calc(100% - 80px);
+      top: 40px;
+      background: linear-gradient(to bottom, #1565c0, #43a047);
+      border-radius: 10px;
+    }
+
+    .stop {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 22px;
+      height: 22px;
+      background: #fff;
+      border: 5px solid #1565c0;
+      border-radius: 50%;
+      z-index: 2;
+      transition: background 0.5s, border-color 0.5s;
+    }
+
+    .stop.reached {
+      background: #43a047;
+      border-color: #43a047;
+    }
+
+    .stop.blinking {
+      animation: blink 0.8s infinite alternate;
+      border-color: red;
+    }
+
+    @keyframes blink {
+      from { background-color: #fff; }
+      to { background-color: red; }
+    }
+
+    .stop-label {
+      position: absolute;
+      left: 60%;
+      transform: translateY(-50%);
+      font-size: 15px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    /* ✅ Black square driver icon */
+    .driver {
+      position: absolute;
+      left: 47%;
+      width: 28px;
+      height: 28px;
+      background: black;
+      border-radius: 5px;
+      z-index: 3;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+      animation: float 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes float {
+      from { transform: translate(-50%, 0px); }
+      to { transform: translate(-50%, -6px); }
+    }
+
+    .info-box {
+      position: absolute;
+      bottom: 15px; /* ✅ Raised slightly */
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 600;
+      color: #1565c0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="route-container">
+    <div class="route-line"></div>
+    <div id="stops"></div>
+
+    <!-- ✅ Black square driver -->
+    <div class="driver" id="driver"></div>
+
+    <div class="info-box" id="info">⬛ The driver is starting the journey...</div>
+  </div>
+
+  <script>
+    const driver = document.getElementById("driver");
+    const stopsContainer = document.getElementById("stops");
+    const info = document.getElementById("info");
+
+    const numStops = 11; // School + 10 stops
+
+    const travelTimes = Array.from({ length: numStops - 1 }, (_, i) =>
+      i === numStops - 2 ? 12000 : Math.floor(5000 + Math.random() * 5000)
+    );
+
+    const totalTime = travelTimes.reduce((a, b) => a + b, 0);
+    let cumulative = 5;
+    const stopPositions = [cumulative];
+    for (let t of travelTimes) {
+      cumulative += (t / totalTime) * 88;
+      stopPositions.push(Math.min(cumulative, 93)); // ✅ Prevent overlap near bottom
+    }
+
+    const stopElements = [];
+    stopPositions.forEach((pos, i) => {
+      const stop = document.createElement("div");
+      stop.classList.add("stop");
+      stop.style.top = pos + "%";
+      stopsContainer.appendChild(stop);
+      stopElements.push(stop);
+
+      const label = document.createElement("div");
+      label.classList.add("stop-label");
+      label.style.top = pos + "%";
+      label.innerText =
+        i === 0
+          ? "School"
+          : i === numStops - 1
+          ? " Back to School"
+          : `Stop ${i}`;
+      stopsContainer.appendChild(label);
+    });
+
+    let currentStop = 0;
+
+    function moveDriver() {
+      if (currentStop >= stopPositions.length - 1) {
+        info.innerText = " The driver has returned to school!";
+        return;
+      }
+
+      const start = stopPositions[currentStop];
+      const end = stopPositions[currentStop + 1];
+      const travelTime = travelTimes[currentStop];
+      const waitTime = 2000;
+      const startTime = Date.now();
+
+      stopElements[currentStop].classList.add("reached");
+      stopElements[currentStop + 1]?.classList.add("blinking");
+
+      function animate() {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / travelTime, 1);
+        const currentY = start + (end - start) * progress;
+        driver.style.top = currentY + "%";
+
+        const remaining = Math.max(0, Math.ceil((travelTime - elapsed) / 1000));
+        info.innerText =
+          currentStop >= 9
+            ? "Going back to school..."
+            : `⬛ The driver arrives in ${remaining} seconds...`;
+
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          stopElements[currentStop + 1].classList.remove("blinking");
+          stopElements[currentStop + 1].classList.add("reached");
+
+          info.innerText =
+            currentStop >= 9
+              ? "⏸ Waiting before heading to school..."
+              : `⏸ Waiting at Stop ${currentStop + 1}...`;
+
+          currentStop++;
+          setTimeout(moveDriver, waitTime);
+        }
+      }
+      animate();
+    }
+
+    driver.style.top = stopPositions[0] + "%";
+    setTimeout(moveDriver, 1000);
+  </script>
+
+</body>
+</html>
