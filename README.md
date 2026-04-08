@@ -50,8 +50,22 @@ This project demonstrates full-stack development, database integration, and real
   1.Login page
   <img width="1853" height="850" alt="Screenshot (72)" src="https://github.com/user-attachments/assets/a32776b0-bea6-4796-92f6-839b5eb1ffaa" />
 
-  2.Live Tracking Page
-  <img width="1600" height="682" alt="image" src="https://github.com/user-attachments/assets/5c6de36e-d5b1-48e4-ab93-c7191c915be7" />
+  2.Live Tracking Page (Driver)
+ <img width="474" height="194" alt="image" src="https://github.com/user-attachments/assets/9f4ef9f5-042c-4981-8df0-f630823fabba" />
+ 3. Live Tracking Page(parent)
+  <img width="1600" height="682" alt="image" src="https://github.com/user-attachments/assets/72adeb3b-7515-4b56-86c2-330b5b533e76" />
+  4. Live Tracking (student)
+  <img width="1600" height="535" alt="image" src="https://github.com/user-attachments/assets/9d8c6148-91c5-4577-87d9-dfbdbe872ef5" />
+  
+  5.Admin dashboard
+  <img width="477" height="197" alt="image" src="https://github.com/user-attachments/assets/5728b2d3-7e6e-4a7d-8673-7e128970d2c1" />
+
+  6.To send notifications from driver to student and parents
+  <img width="478" height="193" alt="image" src="https://github.com/user-attachments/assets/8407636f-2f22-4fb9-8353-fedb8b85ac5a" />
+
+
+  
+
 
   
 
