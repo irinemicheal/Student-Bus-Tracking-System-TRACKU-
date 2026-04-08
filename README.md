@@ -45,3 +45,14 @@ This project demonstrates full-stack development, database integration, and real
 - Google Maps API  
 - Mobile application support  
 - Notifications (SMS/Email)
+
+  ## Screenshots
+  1.Login page
+  <img width="1853" height="850" alt="Screenshot (72)" src="https://github.com/user-attachments/assets/a32776b0-bea6-4796-92f6-839b5eb1ffaa" />
+
+  2.Live Tracking Page
+  <img width="1600" height="682" alt="image" src="https://github.com/user-attachments/assets/5c6de36e-d5b1-48e4-ab93-c7191c915be7" />
+
+  
+
+
