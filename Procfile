@@ -1,1 +1,1 @@
-web: php -S 0.0.0.0:$PORT -t /app/studentbustracking/bustracking/
+web: php -S 0.0.0.0:$PORT -t /app/
