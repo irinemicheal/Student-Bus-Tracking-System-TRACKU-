@@ -39,8 +39,8 @@ This project demonstrates full-stack development, database integration, and real
 
 ---
 ## Demo link
-student-bus-tracking-system-tracku-production.up.railway.app
-
+[student-bus-tracking-system-tracku-production.up.railway.app
+](https://student-bus-tracking-system-tracku-production.up.railway.app?utm_source=chatgpt.com)
 ## 🚀 Future Improvements
 
 - Live GPS tracking integration  
