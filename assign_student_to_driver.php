@@ -4,7 +4,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
     header("Location: login.php");
     exit();
 }
-require_once 'db.php'; 
+require_once 'db_connect.php'; 
 
 $success = $error = '';
 
