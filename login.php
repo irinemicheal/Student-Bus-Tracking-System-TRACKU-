@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 session_start();
-include 'db.php';
+include 'db_connect.php';
 if(isset($_SESSION['username'],$_SESSION['role'])){
     switch($_SESSION['role']){
         case 'admin': header("Location: admin.php"); break;
