@@ -7,7 +7,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
     exit();
 }
 
-include 'db.php';
+include 'db_connect.php';
 
 if (isset($_POST['feedback_id'])) {
     $feedback_id = intval($_POST['feedback_id']);

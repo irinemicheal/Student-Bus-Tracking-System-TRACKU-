@@ -5,7 +5,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'driver') {
     exit();
 }
 
-include 'db.php';
+include 'db_connect.php';
 
 // Get logged-in driver info
 $user_id = $_SESSION['user_id'];

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 header('Content-Type: application/json');
-include 'db.php';
+include 'db_connect.php';
 
 $type = $_GET['type'] ?? '';
 $value = trim($_GET['value'] ?? '');

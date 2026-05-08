@@ -4,7 +4,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'student') {
     header("Location: login.php");
     exit();
 }
-include 'db.php';
+include 'db_connect.php';
 
 $user_id = $_SESSION['user_id'];
 $student_id = null;

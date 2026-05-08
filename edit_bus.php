@@ -4,7 +4,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
     header("Location: login.php");
     exit();
 }
-include 'db.php';
+include 'db_connect.php';
 
 $bus_id = $_GET['id'];
 $query = "SELECT * FROM buses WHERE bus_id=$bus_id";

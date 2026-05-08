@@ -6,7 +6,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
     exit();
 }
 
-include 'db.php';
+include 'db_connect.php';
 
 if (!isset($_GET['id'])) {
     header("Location: manage_routes.php");

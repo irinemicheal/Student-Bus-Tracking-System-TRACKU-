@@ -4,7 +4,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
     header("Location: login.php");
     exit();
 }
-include 'db.php';
+include 'db_connect.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $bus_number = mysqli_real_escape_string($mysqli, $_POST['bus_number']);

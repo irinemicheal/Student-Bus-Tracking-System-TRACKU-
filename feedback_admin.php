@@ -5,7 +5,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
     exit();
 }
 
-include 'db.php';
+include 'db_connect.php';
 
 mysqli_query($mysqli, "UPDATE feedback SET status='Unmarked' WHERE status IS NULL OR status=''");
 

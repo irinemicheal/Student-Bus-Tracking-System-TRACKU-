@@ -5,7 +5,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'student') {
     exit();
 }
 
-include 'db.php';
+include 'db_connect.php';
 $username = $_SESSION['username'];
 $query = "SELECT * FROM students WHERE full_name='$username'";
 $result = mysqli_query($mysqli, $query);

@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include 'db_connect.php';
 
 $bus_id = 1; 
 $stops_query = $conn->query("SELECT * FROM stops WHERE bus_id=$bus_id ORDER BY stop_order ASC");

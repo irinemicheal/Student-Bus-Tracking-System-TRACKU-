@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'db.php';
+include 'db_connect.php';
 
 if (!isset($_SESSION['username']) || $_SESSION['role'] != 'student') {
     echo json_encode(["error" => "Unauthorized"]);

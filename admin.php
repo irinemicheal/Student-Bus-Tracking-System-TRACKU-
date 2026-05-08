@@ -5,7 +5,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
     exit();
 }
 
-include 'db.php';
+include 'db_connect.php';
 
 
 $bus_count = mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT COUNT(*) as total FROM buses"))['total'];

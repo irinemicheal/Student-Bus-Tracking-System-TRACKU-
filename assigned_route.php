@@ -5,7 +5,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'driver') {
     exit();
 }
 
-include 'db.php';
+include 'db_connect.php';
 $username = $_SESSION['username'];
 $query = "SELECT d.driver_id 
           FROM drivers d

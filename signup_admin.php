@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 session_start();
-include 'db.php';
+include 'db_connect.php';
 
 $error=''; $success='';
 $prefill_name = isset($_SESSION['signup_name']) ? $_SESSION['signup_name'] : '';
